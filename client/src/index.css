@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Cormorant&family=Roboto&display=swap");
+@import url("http://fonts.cdnfonts.com/css/times-new-roman");
+
+* {
+  scroll-behavior: smooth;
+}
