@@ -1,2 +1,7 @@
 node_modules
+<<<<<<< HEAD
 /server/Config
+=======
+
+server/Config/config.env
+>>>>>>> 90a2a39ecdccd456e6f96ec13c53a026bad704c3
