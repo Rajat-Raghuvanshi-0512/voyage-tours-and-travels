@@ -4,7 +4,23 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        vto: 
+        {
+          50: '#ffeedb',
+          100: '#ffd2ae',
+          200: '#ffb47e',
+          300: '#ff984c',
+          400: '#ff7a1a',
+          500: '#e66100',
+          600: '#b44b00',
+          700: '#813500',
+          800: '#4f1e00',
+          900: '#200800',
+        }
+      }
+    },
   },
   plugins: [],
 }
