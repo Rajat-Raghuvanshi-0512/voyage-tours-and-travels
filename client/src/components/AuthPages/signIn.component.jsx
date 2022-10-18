@@ -10,7 +10,7 @@ import google__logo from "../../assets/Google.svg";
 import insta__logo from "../../assets/Instagram.svg";
 import fb__logo from "../../assets/Facebook.svg";
 import tick__icon from "../../assets/tickmark.svg";
-import voyage__logo from "../../assets/Voyage_logo_vector.svg";
+import voyage__logo from "../../assets/airplane.png";
 
 function SignInPageBody() {
 
@@ -49,7 +49,7 @@ function SignInPageBody() {
                 <div className="my-2 flex justify-between">
                   <span><h3 className="text-vto-500 hover:text-vto-400 cursor-pointer" onClick={() => Navigate("/signup")}>Create Account</h3></span>
                   <span>
-                    <h3 className="text-vto-500 hover:text-red-600 cursor-pointer flex items-center gap-2">
+                    <h3 className="text-vto-500 hover:text-red-600 cursor-pointer flex items-center gap-2" onClick={() => Navigate("/password/forgot")}>
                       <img src={lock__logo} alt="login__img" />
                       Forgot Password?
                     </h3>

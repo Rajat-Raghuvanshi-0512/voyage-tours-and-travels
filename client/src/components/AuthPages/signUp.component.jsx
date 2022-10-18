@@ -9,7 +9,7 @@ import google__logo from "../../assets/Google.svg";
 import insta__logo from "../../assets/Instagram.svg";
 import fb__logo from "../../assets/Facebook.svg";
 import tick__icon from "../../assets/tickmark.svg";
-import voyage__logo from "../../assets/Voyage_logo_vector.svg";
+import voyage__logo from "../../assets/airplane.png";
 
 function SignUpPageBody() {
 
