@@ -2,9 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Cormorant&family=Roboto&display=swap");
-@import url("http://fonts.cdnfonts.com/css/times-new-roman");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant&family=Roboto&family=Poppins&family=Playfair+Display&display=swap");
 
 * {
   scroll-behavior: smooth;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: none;
 }

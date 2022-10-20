@@ -11,10 +11,13 @@ const userSchema = new mongoose.Schema({
     maxLength: [30, "Name cannot be greater than 30 characters"],
     minlength: [3, "Name must be atleast 3 characters"],
   },
+  phone: {
+    type: String,
+    maxLength: [10, "Invalid Phone number"],
+    minlength: [10, "Invalid Phone number"],
+  },
   email: {
     type: String,
-    required: [true, "Please Enter your email"],
-    unique: true,
     validate: [validator.isEmail, "invalid email"],
   },
   password: {

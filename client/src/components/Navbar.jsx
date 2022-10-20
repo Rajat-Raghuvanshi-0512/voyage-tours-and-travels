@@ -1,5 +1,8 @@
 import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 import { airplaneLogo, homeIcon, searchIcon } from "../constants";
+import NavigationDropDownMenu from "./NavigationDropDownMenu.jsx/NavigationDropDownMenu";
 
 const navigationMenu = [
   "home",
@@ -11,6 +14,13 @@ const navigationMenu = [
 ];
 
 const Navbar = () => {
+  const [isActive, setIsActive] = useState(false);
+
+  useEffect(() => {
+    return () => {
+      setIsActive(false);
+    };
+  }, []);
   return (
     <nav className="bg-[rgba(217,217,217,0.5)] px-20 lg:px-32 py-5 fixed w-full backdrop-blur-sm z-50">
       <div className="flex justify-between">
@@ -26,7 +36,23 @@ const Navbar = () => {
           ))}
         </ul>
         <div className="flex gap-14">
-          <img src={homeIcon} alt="plane" className="w-6 h-6" />
+          <div className="relative" onMouseLeave={() => setIsActive(false)}>
+            <img
+              src={homeIcon}
+              alt="plane"
+              onMouseOver={() => setIsActive(true)}
+              className="w-6 h-6 hover:scale-95 duration-300 cursor-pointer"
+              onClick={() => setIsActive((prev) => !prev)}
+            />
+            <NavigationDropDownMenu
+              className={
+                isActive
+                  ? "translate-y-0 duration-500"
+                  : "-translate-y-2 opacity-0 invisible duration-500"
+              }
+            />
+          </div>
+
           <img src={searchIcon} alt="plane" className="w-6 h-6" />
         </div>
       </div>

@@ -8,7 +8,7 @@ const Services = () => {
       <MainHeading blackText={"Our"} orangeText={"Services"} />
       <div className="flex gap-7 justify-center flex-wrap">
         {[1, 2, 3, 4].map((item) => (
-          <ServiceCard />
+          <ServiceCard key={item} />
         ))}
       </div>
     </div>

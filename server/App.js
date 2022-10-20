@@ -1,21 +1,24 @@
-<<<<<<< HEAD
-const express = require("express")
-const app = express()
-
-//Config path
-if (process.env.NODE_ENV !== "PRODUCTION") {
-    require('dotenv').config({ path: "server/Config/config.env" })
-}
-
-module.exports = app;
-=======
 const express = require("express");
+const cors = require("cors");
+const User = require("./Routes/userRoutes");
+const handleError = require("./Middleware/error");
 const app = express();
+const cookieParser = require("cookie-parser");
 
 //Config path
 if (process.env.NODE_ENV !== "PRODUCTION") {
-  require("dotenv").config({ path: "server/Config/config.env" });
+  require("dotenv").config({ path: "server/.env" });
 }
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+  })
+);
+app.use(cookieParser());
+app.use(express.json());
+
+app.use("/api", User);
+
+app.use(handleError);
 
 module.exports = app;
->>>>>>> 90a2a39ecdccd456e6f96ec13c53a026bad704c3
