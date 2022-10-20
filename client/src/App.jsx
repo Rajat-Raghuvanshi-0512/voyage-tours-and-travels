@@ -26,7 +26,7 @@ const App = () => {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/signin" element={<SignInPage />} />
         <Route path="/password/forgot" element={<ForgotPassPage />} />
-        <Route path="/password/reset" element={<ResetPassPage />} />
+        <Route path="/api/password/reset/:id" element={<ResetPassPage />} />
 
         {/* Logged in user Routes  */}
         <Route element={<ProtectedRoute />}></Route>

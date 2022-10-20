@@ -26,7 +26,7 @@ const Header = () => {
         </p>
         <a
           href="#packages"
-          className="text-white bg-[#FF8227] hover:bg-[#fa6e0a] duration-300 hover:scale-95 px-10 py-5 rounded-2xl font-semibold"
+          className="text-white bg-[#FF8227] hover:bg-[#fa6e0a] duration-300 px-10 py-5 rounded-full font-semibold text-lg"
         >
           Discover more --&gt;
         </a>

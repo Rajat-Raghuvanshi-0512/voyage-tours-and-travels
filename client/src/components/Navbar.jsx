@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { airplaneLogo, homeIcon, searchIcon } from "../constants";
 import NavigationDropDownMenu from "./NavigationDropDownMenu.jsx/NavigationDropDownMenu";
 
@@ -15,6 +16,7 @@ const navigationMenu = [
 
 const Navbar = () => {
   const [isActive, setIsActive] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     return () => {
@@ -31,7 +33,15 @@ const Navbar = () => {
         <ul className="flex gap-10 items-center font-roboto">
           {navigationMenu.map((item) => (
             <li className="capitalize" key={item}>
-              <a href={`#${item}`}>{item}</a>
+              <a
+                href={`#${item}`}
+                className={`hover:text-vto-400 ${
+                  location.hash.includes(item) &&
+                  "text-vto-400 underline underline-offset-8 decoration-2"
+                } duration-300 drop-shadow-sm`}
+              >
+                {item}
+              </a>
             </li>
           ))}
         </ul>

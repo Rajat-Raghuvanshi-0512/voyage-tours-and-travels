@@ -11,7 +11,6 @@ import {
   lock__logo,
   login__img,
   tick__icon,
-  voyage__logo,
 } from "../../constants";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -61,11 +60,6 @@ function SignInPageBody() {
   }, [isAuthenticated, navigate, error, dispatch]);
   return (
     <>
-      <div className="text-2xl font-bold flex items-center gap-4 px-8 py-8">
-        <img src={voyage__logo} alt="login__img" />
-        VOYAGE
-      </div>
-
       <div
         style={{ backgroundColor: "#CFF5F5" }}
         className="w-3/4 rounded drop-shadow-lg mx-auto my-auto"
@@ -121,7 +115,10 @@ function SignInPageBody() {
                   </h3>
                 </span>
                 <span>
-                  <h3 className="text-vto-500 hover:text-red-600 cursor-pointer flex items-center gap-2" onClick={()=>navigate("/password/forgot")}>
+                  <h3
+                    className="text-vto-500 hover:text-red-600 cursor-pointer flex items-center gap-2"
+                    onClick={() => navigate("/password/forgot")}
+                  >
                     <img src={lock__logo} alt="login__img" />
                     Forgot Password?
                   </h3>

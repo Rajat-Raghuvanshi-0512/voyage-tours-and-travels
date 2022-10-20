@@ -1,12 +1,14 @@
-import React from 'react';
+import React from "react";
+import AuthNavbar from "../components/AuthPages/AuthNavbar";
 
-import SignUpPageBody from '../components/AuthPages/signUp.component';
+import SignUpPageBody from "../components/AuthPages/signUp.component";
 
 function SignUpPage() {
   return (
-    <div>
+    <>
+      <AuthNavbar />
       <SignUpPageBody />
-    </div>
+    </>
   );
 }
 

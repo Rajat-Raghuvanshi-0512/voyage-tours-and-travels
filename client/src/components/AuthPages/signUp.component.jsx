@@ -9,7 +9,6 @@ import google__logo from "../../assets/Google.svg";
 import insta__logo from "../../assets/Instagram.svg";
 import fb__logo from "../../assets/Facebook.svg";
 import tick__icon from "../../assets/tickmark.svg";
-import voyage__logo from "../../assets/Voyage_logo_vector.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../redux/Slices/Extra actions/userActions";
 import { clearErrors } from "../../redux/Slices/entities/userSlice";
@@ -64,11 +63,6 @@ function SignUpPageBody() {
 
   return (
     <>
-      <div className="text-2xl font-bold flex items-center gap-4 px-8 py-8">
-        <img src={voyage__logo} alt="login__img" />
-        VOYAGE
-      </div>
-
       <div
         style={{ backgroundColor: "#CFF5F5" }}
         className="w-3/4 rounded drop-shadow-lg mx-auto my-auto"

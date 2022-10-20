@@ -5,6 +5,7 @@ const crypto = require("crypto");
 const ErrorHandler = require("../Utils/errorHandler");
 const catchAsyncErrors = require("../Middleware/catchAsyncErrors");
 const cloudinary = require("cloudinary");
+const { sendMessage } = require("../Utils/sendMessage");
 
 exports.signup = catchAsyncErrors(async (req, res) => {
   const { name, email, password, phone } = req.body;
@@ -54,8 +55,8 @@ exports.signup = catchAsyncErrors(async (req, res) => {
   saveToCookie(newUser, 201, res);
 
   if (email) {
-    const MESSAGE = `Hello ${name}👤,
-       Welcome to Shop Buddy.We’re thrilled to see you here!.\n
+    const MESSAGE = `Hello ${name}👋,
+       Welcome to Voyage.We’re thrilled to see you here!.\n
        We're a global lifestyle brand with a mission to create simple, beautiful products that help the world relax. \n
        You're now on the list and will be the first to know about our latest styles, exclusive offers, and much more.\n
        Take care!\n
@@ -124,37 +125,59 @@ exports.logout = catchAsyncErrors(async (req, res) => {
 });
 
 exports.forgotPassword = catchAsyncErrors(async (req, res) => {
-  const user = await User.findOne({ email: req.body.email });
-  if (!user) {
-    return res.status(404).json({ error: "User not found!" });
-  }
-  // Generating password reset token
-  const resetToken = await user.ResetPassword();
-  //Saving user deatils with password token and password-expire time
-  await user.save({ validateBeforeSave: false });
+  const { email, phone } = req.body;
+  if (!email && !phone)
+    return res.status(400).json({ error: "Please enter email/phone" });
+  if (email) {
+    const user = await User.findOne({ email: req.body.email });
+    if (!user) {
+      return res.status(404).json({ error: "User not found!" });
+    }
 
-  try {
-    // dummy url
-    // const URL = `${process.env.FRONTEND_PORT}/password/reset/${resetToken}`
-
-    //URL to reset password
-    const URL = `${req.protocol}://${req.get(
-      "host"
-    )}/api/password/reset/${resetToken}`;
-    const MESSAGE = `Your password reset token is \n\n${URL} \n\nPlease ignore if you have not requested this email.`;
-
-    await sendEmail({
-      email: user.email,
-      subject: "E-commerce password recovery",
-      message: MESSAGE,
-    });
-
-    return res.status(200).json({ message: `Email sent to ${user.email}` });
-  } catch (err) {
-    user.resetPasswordToken = undefined;
-    user.passwordExpire = undefined;
+    // Generating password reset token
+    const resetToken = await user.ResetPassword();
+    //Saving user deatils with password token and password-expire time
     await user.save({ validateBeforeSave: false });
-    return res.status(500).json({ error: err.message });
+
+    try {
+      // dummy url
+      // const URL = `${process.env.FRONTEND_PORT}/password/reset/${resetToken}`
+
+      //URL to reset password
+      const URL = `${req.protocol}://${req.get(
+        "host"
+      )}/api/password/reset/${resetToken}`;
+      const MESSAGE = `Your password reset token is \n\n${URL} \n\nPlease ignore if you have not requested this email.`;
+
+      await sendEmail({
+        email: user.email,
+        subject: "Voyage password recovery",
+        message: MESSAGE,
+      });
+
+      return res.status(200).json({ message: `Email sent to ${user.email}` });
+    } catch (err) {
+      user.resetPasswordToken = undefined;
+      user.passwordExpire = undefined;
+      await user.save({ validateBeforeSave: false });
+      return res.status(500).json({ error: err.message });
+    }
+  }
+  if (phone) {
+    const user = await User.findOne({ phone });
+    if (!user) {
+      return res.status(404).json({ error: "User not found!" });
+    }
+    // Generating password reset token
+    const OTP = await user.ResetPassword(phone);
+    //Saving user deatils with password token and password-expire time
+    await user.save({ validateBeforeSave: false });
+    const MESSAGE = `Voyage - Your OTP to reset password: ${OTP}`;
+    const messageSent = await sendMessage(MESSAGE, phone);
+    if (!messageSent) {
+      return res.status(500).json({ error: "Error sending message!" });
+    }
+    return res.status(200).json({ success: true, messageSent });
   }
 });
 

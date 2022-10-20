@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const validator = require("validator");
+const { generateOTP } = require("../../Utils/helpers");
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -76,9 +77,15 @@ userSchema.methods.matchPassword = async function (pass) {
 };
 
 // Generating password reset token
-userSchema.methods.ResetPassword = function () {
+userSchema.methods.ResetPassword = function (phone) {
   // Generating token
-  const token = crypto.randomBytes(20).toString("hex");
+  let token;
+  if (phone) {
+    const otp = generateOTP();
+    token = otp;
+  } else {
+    token = crypto.randomBytes(20).toString("hex");
+  }
 
   // Hashing and adding token to UserSchema
   this.resetPasswordToken = crypto
