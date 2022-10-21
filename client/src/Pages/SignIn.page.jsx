@@ -1,13 +1,15 @@
-import React from 'react';
+import React from "react";
+import AuthNavbar from "../components/AuthPages/AuthNavbar";
 
 //components
-import SignInPageBody from '../components/AuthPages/signIn.component';
+import SignInPageBody from "../components/AuthPages/signIn.component";
 
 function SignInPage() {
   return (
-    <div>
+    <>
+      <AuthNavbar />
       <SignInPageBody />
-    </div>
+    </>
   );
 }
 

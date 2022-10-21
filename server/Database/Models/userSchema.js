@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const validator = require("validator");
+const { generateOTP } = require("../../Utils/helpers");
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -11,10 +12,13 @@ const userSchema = new mongoose.Schema({
     maxLength: [30, "Name cannot be greater than 30 characters"],
     minlength: [3, "Name must be atleast 3 characters"],
   },
+  phone: {
+    type: String,
+    maxLength: [10, "Invalid Phone number"],
+    minlength: [10, "Invalid Phone number"],
+  },
   email: {
     type: String,
-    required: [true, "Please Enter your email"],
-    unique: true,
     validate: [validator.isEmail, "invalid email"],
   },
   password: {
@@ -73,9 +77,15 @@ userSchema.methods.matchPassword = async function (pass) {
 };
 
 // Generating password reset token
-userSchema.methods.ResetPassword = function () {
+userSchema.methods.ResetPassword = function (phone) {
   // Generating token
-  const token = crypto.randomBytes(20).toString("hex");
+  let token;
+  if (phone) {
+    const otp = generateOTP();
+    token = otp;
+  } else {
+    token = crypto.randomBytes(20).toString("hex");
+  }
 
   // Hashing and adding token to UserSchema
   this.resetPasswordToken = crypto

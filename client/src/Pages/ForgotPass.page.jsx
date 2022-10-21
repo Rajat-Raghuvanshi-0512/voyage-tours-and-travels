@@ -1,13 +1,15 @@
-import React from 'react';
+import React from "react";
+import AuthNavbar from "../components/AuthPages/AuthNavbar";
 
-import ForgotPassPageBody from '../components/AuthPages/forgotPass.component';
+import ForgotPassPageBody from "../components/AuthPages/forgotPass.component";
 
 function ForgotPassPage() {
   return (
     <>
-        <ForgotPassPageBody />
+      <AuthNavbar />
+      <ForgotPassPageBody />
     </>
-  )
+  );
 }
 
-export default ForgotPassPage
+export default ForgotPassPage;

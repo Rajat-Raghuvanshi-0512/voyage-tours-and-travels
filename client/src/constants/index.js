@@ -17,6 +17,13 @@ import galleryImg6 from "../assets/gallery-img6.png";
 import contactImg from "../assets/contact.png";
 import hotel from "../assets/Hotel.png";
 import person1 from "../assets/person1.png";
+import login__img from "../assets/Journey-cuate.svg";
+import lock__logo from "../assets/lock_logo.svg";
+import google__logo from "../assets/Google.svg";
+import insta__logo from "../assets/Instagram.svg";
+import fb__logo from "../assets/Facebook.svg";
+import tick__icon from "../assets/tickmark.svg";
+import voyage__logo from "../assets/Voyage_logo_vector.svg";
 
 export {
   airplaneLogo,
@@ -38,4 +45,11 @@ export {
   contactImg,
   hotel,
   person1,
+  login__img,
+  lock__logo,
+  google__logo,
+  insta__logo,
+  fb__logo,
+  tick__icon,
+  voyage__logo,
 };
