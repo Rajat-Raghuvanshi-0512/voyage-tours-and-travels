@@ -8,12 +8,18 @@ const cookieParser = require("cookie-parser");
 //Config path
 if (process.env.NODE_ENV !== "PRODUCTION") {
   require("dotenv").config({ path: "server/.env" });
+  app.use(
+    cors({
+      origin: "http://localhost:3000",
+    })
+  );
+} else {
+  app.use(
+    cors({
+      origin: "https://voyage-tours.netlify.app",
+    })
+  );
 }
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-  })
-);
 app.use(cookieParser());
 app.use(express.json());
 
