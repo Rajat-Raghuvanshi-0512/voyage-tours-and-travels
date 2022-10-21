@@ -8,6 +8,7 @@ import SignUpPage from "./Pages/SignUp.page";
 import ForgotPassPage from "./Pages/ForgotPass.page";
 import ResetPassPage from "./Pages/ResetPass.page";
 import PassSavedPage from "./Pages/PassSaved.page";
+import VerificationPage from "./Pages/Verification.page";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/password/forgot" element={<ForgotPassPage />} /> 
         <Route path="/password/reset" element={<ResetPassPage />} /> 
         <Route path="/password/saved" element={<PassSavedPage />} /> 
+        <Route path="/password/verify" element={<VerificationPage />} /> 
       </Routes>
     </Router>
   );
