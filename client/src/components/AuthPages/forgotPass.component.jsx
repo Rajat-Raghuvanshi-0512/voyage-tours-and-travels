@@ -22,7 +22,9 @@ function ForgotPassPageBody() {
   });
   const [active, setActive] = useState("EmailFragment");
   const navigate = useNavigate();
-  const { error, loading, message } = useSelector((state) => state.forgotPass);
+  const { error, loading, emailMsg, otpMsg, otp } = useSelector(
+    (state) => state.forgotPass
+  );
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -37,7 +39,11 @@ function ForgotPassPageBody() {
   const handleSubmit = (e) => {
     const { email, phone } = data;
     e.preventDefault();
-    dispatch(forgotPassword({ email, phone }));
+    if (phone) {
+      dispatch(forgotPassword({ phone }));
+    } else {
+      dispatch(forgotPassword({ email }));
+    }
   };
 
   useEffect(() => {
@@ -45,12 +51,17 @@ function ForgotPassPageBody() {
       toast.error(error);
       dispatch(clearErrors());
     }
-    if (message) {
-      toast.success(message);
+    if (emailMsg) {
+      toast.success(emailMsg);
       dispatch(clearMessage());
       navigate("/signin");
     }
-  }, [message, navigate, error, dispatch]);
+    if (otpMsg) {
+      toast.success(otpMsg);
+      dispatch(clearMessage());
+      navigate(`/password/verify`);
+    }
+  }, [otpMsg, emailMsg, navigate, error, dispatch, otp]);
 
   return (
     <>

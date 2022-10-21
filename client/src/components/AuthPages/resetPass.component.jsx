@@ -1,11 +1,46 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { resetPassword } from "../../redux/Slices/Extra actions/userActions";
+import { useState } from "react";
+import { toast } from "react-toastify";
 
 //images
 import login__img from "../../assets/forgotpasspic.svg";
+import { useEffect } from "react";
+import {
+  clearErrors,
+  clearMessage,
+} from "../../redux/Slices/entities/forgotPasswordSlice";
+import Loader from "../Loader/Loader";
 
 function ResetPassPageBody() {
   const navigate = useNavigate();
+  const [password, setPassword] = useState("");
+  const [cpassword, setCpassword] = useState("");
+  const dispatch = useDispatch();
+  const { error, loading, success } = useSelector((state) => state.forgotPass);
+  const { token } = useParams();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (password !== cpassword) return toast.error("Passwords do not match");
+    dispatch(resetPassword({ token, password, cpassword }));
+  };
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+      dispatch(clearErrors());
+    }
+    if (success) {
+      window.location.reload();
+      navigate("/");
+      toast.success("Password changed successfully");
+      dispatch(clearMessage());
+    }
+  }, [error, success, dispatch, navigate]);
+
+  if (loading) return <Loader />;
 
   return (
     <>
@@ -33,12 +68,12 @@ function ResetPassPageBody() {
                 Please create a new strong password for your account
               </div>
 
-              <form>
+              <form onSubmit={handleSubmit}>
                 <div className="mt-8">
                   <div className="mb-6">
                     <label htmlFor="password" className="text-md">
                       New Password
-                    </label>{" "}
+                    </label>
                     <br />
                     <input
                       type="password"
@@ -47,6 +82,8 @@ function ResetPassPageBody() {
                       title="enter password"
                       required
                       name="password"
+                      onChange={(e) => setPassword(e.target.value)}
+                      value={password}
                     />
                   </div>
                   <div className="mb-8">
@@ -60,7 +97,9 @@ function ResetPassPageBody() {
                       className="outline outline-vto-50 w-full text-black text-md mt-2 py-2 px-3 rounded focus:outline-vto-100"
                       title="re-enter password"
                       required
-                      name="confirmpassword"
+                      name="cpassword"
+                      onChange={(e) => setCpassword(e.target.value)}
+                      value={cpassword}
                     />
                   </div>
                   <button
@@ -71,11 +110,6 @@ function ResetPassPageBody() {
                   </button>
                 </div>
               </form>
-
-              <div className="mb-8 text-xs text-center mt-2 text-gray-500">
-                By continuing, you agree to Voyage's Terms of Use and Privacy
-                Policy.
-              </div>
             </div>
 
             <div className="w-full h-full px-12">

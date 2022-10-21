@@ -10,6 +10,7 @@ const {
   updatePassword,
   updateProfile,
   getUserPhoto,
+  verifyOTP,
 } = require("../Controllers/userController");
 const { isAuthenticated } = require("../Middleware/auth");
 
@@ -18,6 +19,7 @@ router.route("/login").post(login);
 router.route("/logout").get(logout);
 router.route("/photo/:id").get(getUserPhoto);
 router.route("/password/forgot").post(forgotPassword);
+router.route("/otp/verify").post(verifyOTP);
 router.route("/password/reset/:token").put(resetPassword);
 
 // User's profile routes

@@ -12,7 +12,9 @@ const AuthNavbar = () => {
         onClick={() => navigate(-1)}
       />
       <img src={voyage__logo} alt="login__img" />
-      VOYAGE
+      <div onClick={() => navigate("/")} className="cursor-pointer">
+        VOYAGE
+      </div>
     </div>
   );
 };

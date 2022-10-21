@@ -6,6 +6,14 @@
 
 * {
   scroll-behavior: smooth;
+  cursor: url("./assets/cursor.png"), auto;
+}
+a,
+input[type="submit"],
+input[type="checkbox"],
+button,
+.cursor-pointer {
+  cursor: url("./assets/cursor_black.png"), auto;
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -20,4 +28,26 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
   appearance: none;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  box-shadow: inset 0 0 5px rgba(128, 128, 128, 0.124);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
