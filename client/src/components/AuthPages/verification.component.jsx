@@ -23,11 +23,6 @@ function VerificationPageBody() {
   return (
     <>
 
-      <div className="text-2xl font-bold flex items-center gap-4 px-8 py-8">
-        <img src={voyage__logo} alt="login__img" />
-        VOYAGE
-      </div>
-
       <div style={{backgroundColor: "#CFF5F5"}} className="w-3/4 rounded drop-shadow-lg mx-auto my-auto">
         <div className="my-6 rounded-lg">
           <div className="text-black my-2 flex justify-center items-center">
@@ -35,7 +30,7 @@ function VerificationPageBody() {
 
               <div className="my-4">
                 <span className="cursor-pointer hover:text-vto-500 text-vto-400 text-sm font-semibold" onClick={() => Navigate("/signin")}>
-                    &lt; Back to login
+                    Back to login
                 </span>
               </div>
 
