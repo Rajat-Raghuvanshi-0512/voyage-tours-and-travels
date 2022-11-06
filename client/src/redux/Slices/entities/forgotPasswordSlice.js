@@ -1,13 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { forgotPassword } from "../Extra actions/userActions";
+import {
+  forgotPassword,
+  resetPassword,
+  verifyOTP,
+} from "../Extra actions/userActions";
 
 const forgotPassSlice = createSlice({
   name: "user",
   initialState: {
     loading: false,
+    success: false,
     error: null,
-    message: "",
-    success: "",
+    emailMsg: "",
+    otpMsg: "",
+    otp: "",
   },
   reducers: {
     clearErrors: (state) => {
@@ -15,6 +21,10 @@ const forgotPassSlice = createSlice({
     },
     clearMessage: (state) => {
       state.message = "";
+      state.success = false;
+      state.otp = "";
+      state.otpMsg = "";
+      state.emailMsg = "";
     },
   },
   extraReducers: {
@@ -23,9 +33,33 @@ const forgotPassSlice = createSlice({
     },
     [forgotPassword.fulfilled]: (state, action) => {
       state.loading = false;
-      state.message = action.payload.message;
+      state.emailMsg = action.payload.message || "";
+      state.otpMsg = action.payload.phoneMessage || "";
     },
     [forgotPassword.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload || action.error;
+    },
+    [resetPassword.pending]: (state) => {
+      state.loading = true;
+    },
+    [resetPassword.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.success = action.payload.success;
+    },
+    [resetPassword.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload || action.error;
+    },
+    [verifyOTP.pending]: (state) => {
+      state.loading = true;
+    },
+    [verifyOTP.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.success = action.payload.success;
+      state.otp = action.payload.otp;
+    },
+    [verifyOTP.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.payload || action.error;
     },

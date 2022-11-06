@@ -93,8 +93,8 @@ userSchema.methods.ResetPassword = function (phone) {
     .update(token)
     .digest("hex");
 
-  // Setting the password expire time to 15 mins
-  this.passwordExpire = Date.now() + 15 * 60 * 1000;
+  // Setting the password expire time to 5 mins
+  this.passwordExpire = Date.now() + 5 * 60 * 1000;
 
   return token;
 };

@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import VerificationPageBody from '../components/AuthPages/verification.component';
-import AuthNavbar from '../components/AuthPages/AuthNavbar';
+import VerificationPageBody from "../components/AuthPages/verification.component";
+import AuthNavbar from "../components/AuthPages/AuthNavbar";
 
 function VerificationPage() {
   return (
@@ -9,7 +9,7 @@ function VerificationPage() {
       <AuthNavbar />
       <VerificationPageBody />
     </>
-  )
+  );
 }
 
-export default VerificationPage
+export default VerificationPage;

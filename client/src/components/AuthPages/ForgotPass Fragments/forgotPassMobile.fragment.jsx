@@ -1,16 +1,16 @@
 import React from "react";
 
-function ForgotPassMobileFragments({ email, handleChange, handleSubmit }) {
+function ForgotPassMobileFragments({ phone, handleChange, handleSubmit }) {
   return (
     <>
       <div className="text-sm text-gray-500">
         Send a link to your mobile number to reset your password
       </div>
-      <div className="mt-8">
+      <form className="mt-8" onSubmit={handleSubmit}>
         <div className="mb-6">
           <label htmlFor="tel" className="text-lg">
             Mobile No
-          </label>{" "}
+          </label>
           <br />
           <div className="flex gap-2">
             <div className="outline outline-vto-50 bg-white text-black text-lg mt-2 py-2 px-3 rounded focus:outline-vto-100">
@@ -24,7 +24,7 @@ function ForgotPassMobileFragments({ email, handleChange, handleSubmit }) {
               required
               name="phone"
               onChange={handleChange}
-              value={email}
+              value={phone}
             />
           </div>
         </div>
@@ -34,7 +34,7 @@ function ForgotPassMobileFragments({ email, handleChange, handleSubmit }) {
         >
           Send OTP
         </button>
-      </div>
+      </form>
     </>
   );
 }

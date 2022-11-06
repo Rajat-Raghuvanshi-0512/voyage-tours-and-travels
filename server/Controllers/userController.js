@@ -56,17 +56,17 @@ exports.signup = catchAsyncErrors(async (req, res) => {
 
   if (email) {
     const MESSAGE = `Hello ${name}👋,
-       Welcome to Voyage.We’re thrilled to see you here!.\n
+       Welcome to Voyage. We’re thrilled to see you here!.\n
        We're a global lifestyle brand with a mission to create simple, beautiful products that help the world relax. \n
        You're now on the list and will be the first to know about our latest styles, exclusive offers, and much more.\n
        Take care!\n
-        Shop Buddy Team
+        Voyage Team
        `;
 
     const html = `
     <h1>Hello ${name}👤,</h1>
     <br>
-    <h3>Welcome to Shop Buddy .We’re thrilled to see you here! </h3>
+    <h3>Welcome to Voyage. We’re thrilled to see you here! </h3>
     <br>
     <p>We're a global lifestyle brand with a mission to create simple, beautiful products that help the world relax.</p>
     <br>
@@ -75,7 +75,7 @@ exports.signup = catchAsyncErrors(async (req, res) => {
     <b>
         Take care!
         <br>
-        The Shop Buddy Team
+        The Voyage Team
     </b>`;
 
     await sendEmail({
@@ -140,13 +140,14 @@ exports.forgotPassword = catchAsyncErrors(async (req, res) => {
     await user.save({ validateBeforeSave: false });
 
     try {
-      // dummy url
-      // const URL = `${process.env.FRONTEND_PORT}/password/reset/${resetToken}`
+      const URL = `${
+        process.env.FRONTEND_URL || "http://localhost:3000"
+      }/password/reset/${resetToken}`;
 
       //URL to reset password
-      const URL = `${req.protocol}://${req.get(
-        "host"
-      )}/api/password/reset/${resetToken}`;
+      // const URL = `${req.protocol}://${req.get(
+      //   "host"
+      // )}/api/password/reset/${resetToken}`;
       const MESSAGE = `Your password reset token is \n\n${URL} \n\nPlease ignore if you have not requested this email.`;
 
       await sendEmail({
@@ -168,17 +169,38 @@ exports.forgotPassword = catchAsyncErrors(async (req, res) => {
     if (!user) {
       return res.status(404).json({ error: "User not found!" });
     }
-    // Generating password reset token
     const OTP = await user.ResetPassword(phone);
-    //Saving user deatils with password token and password-expire time
     await user.save({ validateBeforeSave: false });
     const MESSAGE = `Voyage - Your OTP to reset password: ${OTP}`;
     const messageSent = await sendMessage(MESSAGE, phone);
     if (!messageSent) {
       return res.status(500).json({ error: "Error sending message!" });
     }
-    return res.status(200).json({ success: true, messageSent });
+    return res
+      .status(200)
+      .json({
+        success: true,
+        phoneMessage: "OTP sent successfully",
+        messageSent,
+      });
   }
+});
+
+exports.verifyOTP = catchAsyncErrors(async (req, res) => {
+  const { otp } = req.body;
+  if (!otp) return res.status(400).json({ error: "Please enter OTP" });
+  const resetPasswordToken = crypto
+    .createHash("sha256")
+    .update(otp)
+    .digest("hex");
+  const user = await User.findOne({
+    resetPasswordToken,
+    passwordExpire: { $gt: Date.now() },
+  });
+  if (!user) {
+    return res.status(400).json({ error: "OTP is invalid or expired" });
+  }
+  return res.status(200).json({ success: true, otp });
 });
 
 exports.resetPassword = catchAsyncErrors(async (req, res) => {
@@ -191,13 +213,18 @@ exports.resetPassword = catchAsyncErrors(async (req, res) => {
     resetPasswordToken,
     passwordExpire: { $gt: Date.now() },
   });
-
   if (!user) {
     return res.status(400).json({ error: "Token is invalid or expired" });
   }
 
   if (req.body.password != req.body.cpassword) {
     return res.status(400).json({ error: "Password doesn't match" });
+  }
+
+  if (req.body.password.length < 6) {
+    return res
+      .status(400)
+      .json({ error: "Password should be atleast 6 characters" });
   }
   user.password = req.body.password;
   user.resetPasswordToken = undefined;

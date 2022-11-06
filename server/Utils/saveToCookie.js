@@ -6,5 +6,8 @@ exports.saveToCookie = (user, statusCode, res) => {
       Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
     ),
   };
-  res.status(statusCode).cookie("token", token, options).json({ user, token });
+  res
+    .status(statusCode)
+    .cookie("token", token, options)
+    .json({ success: true, user, token });
 };

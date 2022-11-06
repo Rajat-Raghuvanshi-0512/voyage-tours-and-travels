@@ -5,12 +5,12 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ProtectedRoute from "./components/Routes/ProtectedRoute";
 import ForgotPassPage from "./Pages/ForgotPass.page";
 
-import VerificationPage from "./Pages/Verification.page";
-
 import HomePage from "./Pages/Home.page";
 import ResetPassPage from "./Pages/ResetPass.page";
 import SignInPage from "./Pages/SignIn.page";
 import SignUpPage from "./Pages/SignUp.page";
+import VerificationPage from "./Pages/Verification.page";
+import PackagePage from "./Pages/Package.page";
 import { getUser } from "./redux/Slices/Extra actions/userActions";
 
 const App = () => {
@@ -29,7 +29,8 @@ const App = () => {
         <Route path="/signin" element={<SignInPage />} />
         <Route path="/password/forgot" element={<ForgotPassPage />} />
         <Route path="/password/verify" element={<VerificationPage />} />
-        <Route path="/api/password/reset/:id" element={<ResetPassPage />} />
+        <Route path="/password/reset/:token" element={<ResetPassPage />} />
+        <Route path="/package" element={<PackagePage />} />
 
         {/* Logged in user Routes  */}
         <Route element={<ProtectedRoute />}></Route>

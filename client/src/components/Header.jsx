@@ -8,6 +8,7 @@ import {
 } from "../constants";
 import Carousel from "./Carousel";
 import Navbar from "./Navbar";
+import { BsArrowRight } from "react-icons/bs";
 
 const Header = () => {
   return (
@@ -26,9 +27,10 @@ const Header = () => {
         </p>
         <a
           href="#packages"
-          className="text-white bg-[#FF8227] hover:bg-[#fa6e0a] duration-300 px-10 py-5 rounded-full font-semibold text-lg"
+          className="text-white bg-[#FF8227] hover:bg-[#fa6e0a] duration-300 px-10 py-4 rounded-2xl font-semibold flex w-fit items-center"
         >
-          Discover more --&gt;
+          <span className="mr-3 cursor-pointer">Discover more</span>
+          <BsArrowRight className="w-6 h-6 cursor-pointer" />
         </a>
       </div>
     </div>
