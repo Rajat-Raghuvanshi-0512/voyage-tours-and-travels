@@ -42,8 +42,14 @@ function ExplorePackage(props) {
             <div>
               {props.cardTitle1}
             </div>
+            <div className='text-xs my-2'>
+              <span className='bg-vto-400 text-white rounded-sm'>{props.cardRating1} </span> <span className='text-vto-400'>{props.cardReview1}</span> {props.cardResponse1}
+            </div>
             <div className='font-bold text-lg'>
               {props.cardFooter1}
+            </div>
+            <div className='-mx-3 font-medium'>
+              {props.cardSecondFooter1}
             </div>
           </div>
 
@@ -54,8 +60,14 @@ function ExplorePackage(props) {
             <div>
               {props.cardTitle2}
             </div>
+            <div className='text-xs my-2'>
+              <span className='bg-vto-400 text-white rounded-sm'>{props.cardRating2} </span> <span className='text-vto-400'>{props.cardReview2}</span> {props.cardResponse2}
+            </div>
             <div className='font-bold text-lg'>
               {props.cardFooter2}
+            </div>
+            <div className='-mx-3 font-medium'>
+              {props.cardSecondFooter2}
             </div>
           </div>
 
@@ -66,8 +78,14 @@ function ExplorePackage(props) {
             <div>
               {props.cardTitle3}
             </div>
+            <div className='text-xs my-2'>
+              <span className='bg-vto-400 text-white rounded-sm'>{props.cardRating3} </span> <span className='text-vto-400'>{props.cardReview3}</span> {props.cardResponse3}
+            </div>
             <div className='font-bold text-lg'>
               {props.cardFooter3}
+            </div>
+            <div className='-mx-3 font-medium'>
+              {props.cardSecondFooter3}
             </div>
           </div>
 
@@ -78,8 +96,14 @@ function ExplorePackage(props) {
             <div>
               {props.cardTitle4}
             </div>
+            <div className='text-xs my-2'>
+              <span className='bg-vto-400 text-white rounded-sm'>{props.cardRating4} </span> <span className='text-vto-400'>{props.cardReview4}</span> {props.cardResponse4}
+            </div>
             <div className='font-bold text-lg'>
               {props.cardFooter4}
+            </div>
+            <div className='-mx-3 font-medium'>
+              {props.cardSecondFooter4}
             </div>
           </div>
         </div>
