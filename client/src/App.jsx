@@ -30,7 +30,7 @@ const App = () => {
         <Route path="/password/forgot" element={<ForgotPassPage />} />
         <Route path="/password/verify" element={<VerificationPage />} />
         <Route path="/password/reset/:token" element={<ResetPassPage />} />
-        <Route path="/package" element={<PackagePage />} />
+        <Route path="/package/:id" element={<PackagePage />} />
 
         {/* Logged in user Routes  */}
         <Route element={<ProtectedRoute />}></Route>

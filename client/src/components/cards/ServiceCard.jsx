@@ -1,18 +1,14 @@
 import React from "react";
-import { hotel } from "../../constants";
 
-const ServiceCard = () => {
+const ServiceCard = ({ item }) => {
   return (
     <div className="font-roboto w-[300px] shadow-lg rounded-xl">
       <div className="flex justify-center items-center p-3">
-        <img src={hotel} alt="" />
+        <img src={require(`../../${item.icon}`)} alt="" className="w-16 " />
       </div>
       <div className="p-4">
-        <h4 className="text-2xl font-bold text-center">Affordable Hotels</h4>
-        <p className="text-sm mt-4 text-center">
-          Get affordable and budget friendly hotels with premium facilities like
-          buffet and at prime locations.
-        </p>
+        <h4 className="text-2xl font-bold text-center">{item.name}</h4>
+        <p className="text-sm mt-4 text-center">{item.desc}</p>
       </div>
     </div>
   );

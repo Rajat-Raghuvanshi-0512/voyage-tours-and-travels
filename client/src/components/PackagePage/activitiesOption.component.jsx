@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import BookingPackage from './packageBooking.component';
+import BookingPackage from "./packageBooking.component";
 
 import activities__icon from "../../assets/Tree.png";
 import car_logo from "../../assets/car.png";
@@ -10,21 +10,17 @@ import restaurant_logo from "../../assets/Restaurant.png";
 function ActivitiesOptions() {
   return (
     <>
-        <div className='mt-12 flex gap-4'>
-            <div className='w-9'>
-                <img src={activities__icon} alt="package-hero-image" className=''/>
-            </div>
-            <div className='font-semibold'>
-                <div className='text-3xl'>
-                    Activities
-                </div>
-                <div className='text-lg'>
-                    Most booked
-                </div>
-            </div>
+      <div className="mt-12 flex gap-4">
+        <div className="w-9">
+          <img src={activities__icon} alt="package-hero" className="" />
         </div>
+        <div className="font-semibold">
+          <div className="text-3xl">Activities</div>
+          <div className="text-lg">Most booked</div>
+        </div>
+      </div>
 
-        <BookingPackage 
+      <BookingPackage
         imgSrc={park_logo}
         explrTitle="Water kingdom fun park"
         priceTitle="Entry ticket"
@@ -41,8 +37,8 @@ function ActivitiesOptions() {
         cardHeader4="VIP"
         cardTitle4="₹ 5,999"
         cardFooter4="Available on :"
-        />
-        <BookingPackage 
+      />
+      <BookingPackage
         imgSrc={car_logo}
         explrTitle="Full day city tour by Car"
         priceTitle="Price for 3 people"
@@ -59,8 +55,8 @@ function ActivitiesOptions() {
         cardHeader4="FORTUNER"
         cardTitle4="₹ 25,999"
         cardFooter4="Available on :"
-        />
-        <BookingPackage 
+      />
+      <BookingPackage
         imgSrc={restaurant_logo}
         explrTitle="Ritazza cafe"
         priceTitle="Average for 2 people"
@@ -77,9 +73,9 @@ function ActivitiesOptions() {
         cardHeader4="EVENT ORGANIZING"
         cardTitle4="₹ 20,999"
         cardFooter4="Available on :"
-        />
+      />
     </>
-  )
+  );
 }
 
-export default ActivitiesOptions
+export default ActivitiesOptions;

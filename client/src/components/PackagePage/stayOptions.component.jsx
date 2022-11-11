@@ -1,28 +1,25 @@
-import React from 'react';
+import React from "react";
 
-import ExplorePackage from './packageExplore.component';
+import ExplorePackage from "./packageExplore.component";
 
 import hotel__icon from "../../assets/HotelOptions.png";
 import star__logo from "../../assets/Star.png";
+import packages from "../../packages.json";
 
-function StayOptions() {
+function StayOptions({ id }) {
   return (
     <>
-        <div className='mt-12 flex gap-4'>
-            <div className='w-9'>
-                <img src={hotel__icon} alt="package-hero-image" className=''/>
-            </div>
-            <div className='font-semibold'>
-                <div className='text-3xl'>
-                    Stay in Mumbai
-                </div>
-                <div className='text-lg'>
-                    Recommended options
-                </div>
-            </div>
+      <div className="mt-12 flex gap-4">
+        <div className="w-9">
+          <img src={hotel__icon} alt="package-hero" className="" />
         </div>
+        <div className="font-semibold">
+          <div className="text-3xl">Stay in {packages[id - 1].name}</div>
+          <div className="text-lg">Recommended options</div>
+        </div>
+      </div>
 
-        <ExplorePackage
+      <ExplorePackage
         imgSrc={star__logo}
         explrTitle="3 Star Hotels"
         priceTitle="Average Price"
@@ -46,9 +43,9 @@ function StayOptions() {
         cardRating4="3.6"
         cardReview4="Good"
         cardResponse4="(1107 ratings)"
-        cardSecondFooter4="7.6 KM from Airport" 
-        />
-        <ExplorePackage
+        cardSecondFooter4="7.6 KM from Airport"
+      />
+      <ExplorePackage
         imgSrc={star__logo}
         explrTitle="4 Star Hotels"
         priceTitle="Average Price"
@@ -72,9 +69,9 @@ function StayOptions() {
         cardRating4="3.6"
         cardReview4="Good"
         cardResponse4="(1107 ratings)"
-        cardSecondFooter4="7.6 KM from Airport"  
-        />
-        <ExplorePackage 
+        cardSecondFooter4="7.6 KM from Airport"
+      />
+      <ExplorePackage
         imgSrc={star__logo}
         explrTitle="5 Star Hotels"
         priceTitle="Average Price"
@@ -98,10 +95,10 @@ function StayOptions() {
         cardRating4="3.6"
         cardReview4="Good"
         cardResponse4="(1107 ratings)"
-        cardSecondFooter4="7.6 KM from Airport" 
-        />
+        cardSecondFooter4="7.6 KM from Airport"
+      />
     </>
-  )
+  );
 }
 
-export default StayOptions
+export default StayOptions;

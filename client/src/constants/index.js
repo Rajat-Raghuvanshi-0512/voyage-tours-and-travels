@@ -7,7 +7,7 @@ import carousel3 from "../assets/carousel3.png";
 import carousel4 from "../assets/carousel4.png";
 import carousel5 from "../assets/carousel5.png";
 import backpack from "../assets/backpack.png";
-import mumbai from "../assets/mumbai.png";
+import mumbai from "../assets/mumbai_small.png";
 import galleryImg1 from "../assets/gallery-img1.png";
 import galleryImg2 from "../assets/gallery-img2.png";
 import galleryImg3 from "../assets/gallery-img3.png";
@@ -15,8 +15,10 @@ import galleryImg4 from "../assets/gallery-img4.png";
 import galleryImg5 from "../assets/gallery-img5.png";
 import galleryImg6 from "../assets/gallery-img6.png";
 import contactImg from "../assets/contact.png";
-import hotel from "../assets/Hotel.png";
+import hotel from "../assets/service1.png";
 import person1 from "../assets/person1.png";
+import person2 from "../assets/review2.png";
+import person3 from "../assets/review3.png";
 import login__img from "../assets/Journey-cuate.svg";
 import lock__logo from "../assets/lock_logo.svg";
 import google__logo from "../assets/Google.svg";
@@ -52,4 +54,6 @@ export {
   fb__logo,
   tick__icon,
   voyage__logo,
+  person2,
+  person3,
 };

@@ -1,8 +1,18 @@
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 
 const Carousel = ({ images = [] }) => {
   const [activeImg, setactiveImg] = useState(0);
+  useEffect(() => {
+    setTimeout(() => {
+      if (activeImg >= 4) {
+        setactiveImg(0);
+      } else {
+        setactiveImg(activeImg + 1);
+      }
+    }, 3000);
+  }, [activeImg]);
   return (
     <div
       id="default-carousel"
@@ -36,7 +46,6 @@ const Carousel = ({ images = [] }) => {
             className={`w-[14px] h-[14px] rounded-full ${
               activeImg === i ? "bg-[#FFD706]" : "bg-[#F5F5F5]"
             }`}
-            onClick={() => setactiveImg(i)}
             key={i}
           ></button>
         ))}

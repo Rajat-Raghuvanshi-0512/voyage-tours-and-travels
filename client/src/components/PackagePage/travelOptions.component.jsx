@@ -1,32 +1,31 @@
-import React from 'react';
+import React from "react";
 
-import ExplorePackage from './packageExplore.component';
-import BookingPackage from './packageBooking.component';
+import ExplorePackage from "./packageExplore.component";
+import BookingPackage from "./packageBooking.component";
 
 import travel__icon from "../../assets/travel-img.svg";
 import plane_package_logo from "../../assets/plane-package-logo.png";
 import train_package_logo from "../../assets/Train.png";
+import packages from "../../packages.json";
 
-function TravelOptions() {
+function TravelOptions({ id }) {
   return (
     <>
-        <div className='mt-20 flex gap-4'>
-            <div className='w-9'>
-                <img src={travel__icon} alt="package-hero-image" className=''/>
-            </div>
-            <div className='font-semibold'>
-                <div className='text-3xl'>
-                    Travel options to reach mumbai
-                </div>
-                <div className='text-lg'>
-                    Our recommendations
-                </div>
-            </div>
+      <div className="mt-20 flex gap-4">
+        <div className="w-9">
+          <img src={travel__icon} alt="package-hero" className="" />
         </div>
+        <div className="font-semibold">
+          <div className="text-3xl">
+            Travel options to reach {packages[id - 1].name}
+          </div>
+          <div className="text-lg">Our recommendations</div>
+        </div>
+      </div>
 
-        <ExplorePackage
+      <ExplorePackage
         imgSrc={plane_package_logo}
-        explrTitle="Flight to Mumbai Airport"
+        explrTitle={`Flight to ${packages[id - 1].name} Airport`}
         priceTitle="Booking options starting from"
         avgPrice="2,900"
         cardHeader1="INDIGO"
@@ -41,10 +40,10 @@ function TravelOptions() {
         cardHeader4="VISTARA"
         cardTitle4="One way trip"
         cardFooter4="₹ 4,205"
-        />
-        <BookingPackage 
+      />
+      <BookingPackage
         imgSrc={train_package_logo}
-        explrTitle="Train to Mumbai Central"
+        explrTitle={`Train to ${packages[id - 1].name} Central`}
         priceTitle="Booking Price"
         avgPrice="1,925"
         cardHeader1="PUNJAB MAIL"
@@ -59,9 +58,9 @@ function TravelOptions() {
         cardHeader4="GARIB RATH"
         cardTitle4="#91002"
         cardFooter4="Departs on :"
-        />
+      />
     </>
-  )
+  );
 }
 
-export default TravelOptions
+export default TravelOptions;
